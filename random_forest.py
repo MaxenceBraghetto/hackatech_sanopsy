@@ -13,6 +13,7 @@ if(not manual_data_balancing):
 
 #     data = pd.read_csv(os.path.join(data_dir, "new_full_dataset.csv"))
     data = pd.read_csv(os.path.join(data_dir, "full_dataset.csv"))
+    print(np.unique(data["main_class"]))
      
      
      
@@ -86,8 +87,8 @@ pred_train_str = [inv_target_mapping[k] for k in pred_train]
 
 print(data["main_class"].value_counts())
 print("---")
-for i in range(len(target_mapping)):
-    print(f"{inv_target_mapping[i]}: {len([x for x in pred_train if x == i])}")
+#for i in range(len(target_mapping)):
+#    print(f"{inv_target_mapping[i]}: {len([x for x in pred_train if x == i])}")
 
 pred_test = clf.predict(test_dense_vectors)
 print(accuracy(pred_test, test_classes))
@@ -95,6 +96,6 @@ pred_test_str = [inv_target_mapping[k] for k in pred_test]
 # print(fuzzy_accuracy(pred_test_str, test_lists_classes,2))
 inv_target_mapping = {v: k for k, v in target_mapping.items()}
 
-for i in range(len(target_mapping)):
-    print(f"(pred/real):{inv_target_mapping[i]}: {len([x for x in pred_test if x == i])} / {len([x for x in test_classes if x == i])}")
+#for i in range(len(target_mapping)):
+#    print(f"(pred/real):{inv_target_mapping[i]}: {len([x for x in pred_test if x == i])} / {len([x for x in test_classes if x == i])}")
 print("break")
